@@ -2,7 +2,7 @@ from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QMessageBox
 import requests
 
-from config import server_address, token, role, username
+import config
 from action.AddDi import AddDi
 from action.AddTiao import AddTiao
 from action.AddGoods import AddGoods
@@ -21,10 +21,9 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
         self.tableWidget_di.setHorizontalHeaderLabels(["ID", "名称", "数量", "单价", "操作员", "时间"])
         self.tableWidget_tiao.setHorizontalHeaderLabels(["ID", "名称", "数量", "单价", "操作员", "时间"])
         self.tableWidget_users.setHorizontalHeaderLabels(["ID", "账户", "权限", "创建时间", "编辑时间", "是否已禁用"])
-        if role != "admin":
+        if config.role != "admin":
             self.userInfoLabel.setEnabled(False)
-
-        self.tabWidget.currentChanged.connect(self, self.table_changed)
+        self.tabWidget.currentChanged.connect(self.table_changed)
         self.pushButton_searchGoods.clicked.connect(self.draw_goods)
         self.pushButton_searchStorage.clicked.connect(self.draw_storage)
         self.pushButton_searchDi.clicked.connect(self.draw_di)
@@ -48,7 +47,7 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
     def draw_goods(self):
         keyword = self.lineEdit_searchGoods.text()
         try:
-            response = requests.get(server_address + "/goods", json={'token': token, 'keyword': keyword})
+            response = requests.get(config.server_address + "/nekoerp/goods?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
             if response.status_code == 200:
                 list_data = json_response.get("list", [])
@@ -69,8 +68,7 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
     def draw_storage(self):
         keyword = self.lineEdit_searchStorage.text()
         try:
-            response = requests.get(server_address + "/storage",
-                                    json={'token': token, 'keyword': keyword})
+            response = requests.get(config.server_address + "/nekoerp/storage?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
             if response.status_code == 200:
                 list_data = json_response.get("list", [])
@@ -91,7 +89,7 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
     def draw_di(self):
         keyword = self.lineEdit_searchDi.text()
         try:
-            response = requests.get(server_address + "/di", json={'token': token, 'keyword': keyword})
+            response = requests.get(config.server_address + "/nekoerp/di?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
             if response.status_code == 200:
                 list_data = json_response.get("list", [])
@@ -121,7 +119,7 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
     def draw_tiao(self):
         keyword = self.lineEdit_searchDi.text()
         try:
-            response = requests.get(server_address + "/tiao", json={'token': token, 'keyword': keyword})
+            response = requests.get(config.server_address + "/nekoerp/tiao?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
             if response.status_code == 200:
                 list_data = json_response.get("list", [])
@@ -148,7 +146,7 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
     def draw_user(self):
         keyword = self.lineEdit_searchDi.text()
         try:
-            response = requests.get(server_address + "/user", json={'token': token, 'keyword': keyword})
+            response = requests.get(config.server_address + "/nekoerp/user?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
             if response.status_code == 200:
                 list_data = json_response.get("list", [])

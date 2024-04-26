@@ -2,7 +2,7 @@ from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QMessageBox
 import requests
 
-from config import server_address, token
+import config
 from window import addDi
 
 class AddDi(QtWidgets.QWidget, addDi.Ui_Dialog):
@@ -27,8 +27,8 @@ class AddDi(QtWidgets.QWidget, addDi.Ui_Dialog):
             return
 
         try:
-            response = requests.post(server_address + "/di",
-                                     json={'token': token, 'id': goods_id, "count": goods_count})
+            response = requests.post(config.server_address + "/nekoerp/di",
+                                     json={'token': config.token, 'id': goods_id, "count": goods_count})
             json_response = response.json()
             if response.status_code == 200:
                 QMessageBox.information(self, "入库成功", "货物入库成功")

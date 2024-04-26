@@ -2,7 +2,7 @@ from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QMessageBox
 import requests
 
-from config import server_address, token
+import config
 from window import addUser
 
 
@@ -19,8 +19,8 @@ class AddUser(QtWidgets.QWidget, addUser.Ui_Dialog):
         password = self.lineEdit_password.text()
         role = self.comboBox_role.currentIndex() + 1
         try:
-            response = requests.post(server_address + "/user",
-                                     json={'token': token, 'account': account, "password": password, "role": role})
+            response = requests.post(config.server_address + "/nekoerp/user",
+                                     json={'token': config.token, 'account': account, "password": password, "role": role})
             json_response = response.json()
             if response.status_code == 200:
                 QMessageBox.information(self, "添加成功", "用户添加成功")

@@ -2,8 +2,9 @@ from PyQt6 import QtWidgets
 from PyQt6.QtWidgets import QMessageBox
 import requests
 
-from config import server_address, token
+import config
 from window import addGoods
+
 
 class AddGoods(QtWidgets.QWidget, addGoods.Ui_Dialog):
     def __init__(self):
@@ -17,8 +18,8 @@ class AddGoods(QtWidgets.QWidget, addGoods.Ui_Dialog):
         goods_name = self.lineEdit_goods_name.text()
         goods_price = self.lineEdit_goods_price.text()
         try:
-            response = requests.post(server_address + "/goods",
-                                     json={'token': token, 'name': goods_name, "price": goods_price})
+            response = requests.post(config.server_address + "/nekoerp/goods",
+                                     json={'token': config.token, 'name': goods_name, "price": goods_price})
             json_response = response.json()
             if response.status_code == 200:
                 QMessageBox.information(self, "添加成功", "货物信息添加成功")

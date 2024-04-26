@@ -22,7 +22,7 @@ class LoginDialog(QtWidgets.QWidget, loginDialog.Ui_Form):
         password = self.password.text()
 
         try:
-            response = requests.post(config.server_address + "/user/login",
+            response = requests.post(config.server_address + "/nekoerp/user/login",
                                      json={'username': config.username, 'password': password})
             json_response = response.json()
             if response.status_code == 200:
