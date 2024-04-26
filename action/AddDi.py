@@ -5,6 +5,7 @@ import requests
 import config
 from window import addDi
 
+
 class AddDi(QtWidgets.QWidget, addDi.Ui_Dialog):
     def __init__(self):
         super().__init__()

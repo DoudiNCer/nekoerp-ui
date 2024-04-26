@@ -8,6 +8,7 @@ import config
 from action.MainWindow import MainWindow
 from window import loginDialog
 
+
 class LoginDialog(QtWidgets.QWidget, loginDialog.Ui_Form):
     def __init__(self):
         super().__init__()
@@ -32,7 +33,6 @@ class LoginDialog(QtWidgets.QWidget, loginDialog.Ui_Form):
 
                 # 关闭登录窗口
                 self.close()
-
                 # 加载并展示主窗口，替换为你的MainWindow类
                 self.mainWindow = MainWindow()
                 self.mainWindow.show()
