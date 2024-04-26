@@ -46,7 +46,8 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
     def draw_goods(self):
         keyword = self.lineEdit_searchGoods.text()
         try:
-            response = requests.get(config.server_address + "/nekoerp/goods?token=" + config.token + "&keyword=" + keyword)
+            response = requests.get(
+                config.server_address + "/nekoerp/goods?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
             if response.status_code == 200:
                 list_data = json_response.get("list", [])
@@ -70,7 +71,8 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
     def draw_storage(self):
         keyword = self.lineEdit_searchStorage.text()
         try:
-            response = requests.get(config.server_address + "/nekoerp/storage?token=" + config.token + "&keyword=" + keyword)
+            response = requests.get(
+                config.server_address + "/nekoerp/storage?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
             if response.status_code == 200:
                 list_data = json_response.get("list", [])
@@ -107,7 +109,7 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
                     self.tableWidget_di.setItem(row_index, 1, QtWidgets.QTableWidgetItem(item.get("name")))
                     self.tableWidget_di.setItem(row_index, 2, QtWidgets.QTableWidgetItem(str(item.get("count"))))
                     self.tableWidget_di.setItem(row_index, 3,
-                                                  QtWidgets.QTableWidgetItem(f"{item.get('price', 0):0.2f}"))
+                                                QtWidgets.QTableWidgetItem(f"{item.get('price', 0):0.2f}"))
                     self.tableWidget_di.setItem(row_index, 4, QtWidgets.QTableWidgetItem(item.get("account")))
                     created_at = item.get("createdAt")
                     if created_at != "":
@@ -120,10 +122,12 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
         except requests.RequestException as e:
             QMessageBox.warning(self, "请求错误", str(e))
         self.tableWidget_di.show()
+
     def draw_tiao(self):
         keyword = self.lineEdit_searchDi.text()
         try:
-            response = requests.get(config.server_address + "/nekoerp/tiao?token=" + config.token + "&keyword=" + keyword)
+            response = requests.get(
+                config.server_address + "/nekoerp/tiao?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
             print(json_response)
             if response.status_code == 200:
@@ -154,7 +158,8 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
     def draw_user(self):
         keyword = self.lineEdit_searchUser.text()
         try:
-            response = requests.get(config.server_address + "/nekoerp/user?token=" + config.token + "&keyword=" + keyword)
+            response = requests.get(
+                config.server_address + "/nekoerp/user?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
             print(json_response)
             if response.status_code == 200:
@@ -187,20 +192,36 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
 
     def add_goods(self):
         self.addGoods = AddGoods()
+        self.addGoods.closeEvent = self.add_goods_close_event
         self.addGoods.show()
+
+    def add_goods_close_event(self, event):
         self.draw_goods()
+        super(AddGoods, self.addGoods).closeEvent(event)
 
     def add_user(self):
         self.addUser = AddUser()
+        self.addUser.closeEvent = self.add_user_close_event
         self.addUser.show()
+
+    def add_user_close_event(self, event):
         self.draw_user()
+        super(AddGoods, self.addGoods).closeEvent(event)
 
     def di(self):
         self.addDi = AddDi()
+        self.addDi.closeEvent = self.add_di_close_event
         self.addDi.show()
+
+    def add_di_close_event(self, event):
         self.draw_di()
+        super(AddGoods, self.addGoods).closeEvent(event)
 
     def tiao(self):
         self.addTiao = AddTiao()
+        self.addTiao.closeEvent = self.add_tiao_close_event
         self.addTiao.show()
+
+    def add_tiao_close_event(self, event):
         self.draw_tiao()
+        super(AddGoods, self.addGoods).closeEvent(event)
