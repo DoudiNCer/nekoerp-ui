@@ -1,0 +1,315 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ManagementSystem</class>
+ <widget class="QWidget" name="ManagementSystem">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1280</width>
+    <height>720</height>
+   </rect>
+  </property>
+  <property name="minimumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>1280</width>
+    <height>720</height>
+   </size>
+  </property>
+  <property name="windowTitle">
+   <string>NekoERP</string>
+  </property>
+  <widget class="QTabWidget" name="tabWidget">
+   <property name="geometry">
+    <rect>
+     <x>20</x>
+     <y>60</y>
+     <width>1240</width>
+     <height>640</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>2</number>
+   </property>
+   <widget class="QWidget" name="goodsManagementTab">
+    <attribute name="title">
+     <string>货物管理</string>
+    </attribute>
+    <layout class="QVBoxLayout" name="verticalLayoutGoods">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayoutSearchGoods">
+       <item>
+        <widget class="QLineEdit" name="lineEdit_searchGoods">
+         <property name="placeholderText">
+          <string>输入关键字搜索</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_searchGoods">
+         <property name="text">
+          <string>搜索</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_addGoods">
+         <property name="text">
+          <string>添加</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="tableWidget_goods">
+       <property name="rowCount">
+        <number>0</number>
+       </property>
+       <property name="columnCount">
+        <number>3</number>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>150</number>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <column/>
+       <column/>
+       <column/>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="storageManagementTab">
+    <attribute name="title">
+     <string>库存管理</string>
+    </attribute>
+    <layout class="QVBoxLayout" name="verticalLayoutInventory">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayoutSearch">
+       <item>
+        <widget class="QLineEdit" name="lineEdit_searchStorage">
+         <property name="placeholderText">
+          <string>输入关键字搜索</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_searchStorage">
+         <property name="text">
+          <string>搜索</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="tableWidget_storage">
+       <property name="rowCount">
+        <number>0</number>
+       </property>
+       <property name="columnCount">
+        <number>4</number>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>150</number>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="diManagementTab">
+    <attribute name="title">
+     <string>进货管理</string>
+    </attribute>
+    <layout class="QVBoxLayout" name="verticalLayoutDi">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayoutSearchDi">
+       <item>
+        <widget class="QLineEdit" name="lineEdit_searchDi">
+         <property name="placeholderText">
+          <string>输入关键字搜索</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_searchDi">
+         <property name="text">
+          <string>搜索</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_addDi">
+         <property name="text">
+          <string>进货</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="tableWidget_di">
+       <property name="rowCount">
+        <number>0</number>
+       </property>
+       <property name="columnCount">
+        <number>6</number>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>150</number>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="tiaoManagementTab">
+    <attribute name="title">
+     <string>出库管理</string>
+    </attribute>
+    <layout class="QVBoxLayout" name="verticalLayoutTiao">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayoutSearchTiao">
+       <item>
+        <widget class="QLineEdit" name="lineEdit_searchTiao">
+         <property name="placeholderText">
+          <string>输入关键字搜索</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_searchTiao">
+         <property name="text">
+          <string>搜索</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_addTiao">
+         <property name="text">
+          <string>出库</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="tableWidget_tiao">
+       <property name="rowCount">
+        <number>0</number>
+       </property>
+       <property name="columnCount">
+        <number>6</number>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>150</number>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+   <widget class="QWidget" name="userManagementTab">
+    <attribute name="title">
+     <string>用户管理</string>
+    </attribute>
+    <layout class="QVBoxLayout" name="verticalLayoutUser">
+     <item>
+      <layout class="QHBoxLayout" name="horizontalLayoutSearchUser">
+       <item>
+        <widget class="QLineEdit" name="lineEdit_searchUser">
+         <property name="placeholderText">
+          <string>输入用户名搜索</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_searchUser">
+         <property name="text">
+          <string>搜索</string>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_addUser">
+         <property name="text">
+          <string>添加用户</string>
+         </property>
+        </widget>
+       </item>
+      </layout>
+     </item>
+     <item>
+      <widget class="QTableWidget" name="tableWidget_users">
+       <property name="rowCount">
+        <number>0</number>
+       </property>
+       <property name="columnCount">
+        <number>6</number>
+       </property>
+       <attribute name="horizontalHeaderDefaultSectionSize">
+        <number>150</number>
+       </attribute>
+       <attribute name="horizontalHeaderStretchLastSection">
+        <bool>true</bool>
+       </attribute>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+       <column/>
+      </widget>
+     </item>
+    </layout>
+   </widget>
+  </widget>
+  <widget class="QLabel" name="userInfoLabel">
+   <property name="geometry">
+    <rect>
+     <x>1000</x>
+     <y>20</y>
+     <width>260</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>用户名: [username] 权限: [role]</string>
+   </property>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>
