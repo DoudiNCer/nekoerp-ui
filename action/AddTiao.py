@@ -29,7 +29,7 @@ class AddTiao(QtWidgets.QWidget, addTiao.Ui_Dialog):
 
         try:
             response = requests.post(config.server_address + "/nekoerp/tiao",
-                                     json={'token': config.token, 'id': goods_id, "count": goods_count})
+                                     json={'token': config.token, 'type': goods_id, "count": goods_count})
             json_response = response.json()
             if response.status_code == 200:
                 QMessageBox.information(self, "出库成功", "货物出库成功")

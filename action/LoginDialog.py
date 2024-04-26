@@ -26,8 +26,9 @@ class LoginDialog(QtWidgets.QWidget, loginDialog.Ui_Form):
                                      json={'username': config.username, 'password': password})
             json_response = response.json()
             if response.status_code == 200:
-                config.token = json_response.get('token')
-                config.role = json_response.get('role')
+                data = json_response.get("data")
+                config.token = data.get('token')
+                config.role = data.get('role')
 
                 # 关闭登录窗口
                 self.close()
