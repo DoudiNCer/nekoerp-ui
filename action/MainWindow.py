@@ -138,7 +138,6 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
             response = requests.get(
                 config.server_address + "/nekoerp/tiao?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
-            print(json_response)
             if response.status_code == 200:
                 list_data = json_response.get("list", [])
                 if list_data is None:
@@ -170,7 +169,6 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
             response = requests.get(
                 config.server_address + "/nekoerp/user?token=" + config.token + "&keyword=" + keyword)
             json_response = response.json()
-            print(json_response)
             if response.status_code == 200:
                 list_data = json_response.get("list", [])
                 if list_data is None:
