@@ -1,4 +1,5 @@
 from PyQt6 import QtWidgets
+from PyQt6.QtCore import pyqtSignal
 from PyQt6.QtWidgets import QMessageBox
 import requests
 
@@ -7,6 +8,8 @@ from window import addDi
 
 
 class AddDi(QtWidgets.QWidget, addDi.Ui_Dialog):
+    fresh = pyqtSignal()
+
     def __init__(self):
         super().__init__()
 
@@ -40,3 +43,7 @@ class AddDi(QtWidgets.QWidget, addDi.Ui_Dialog):
 
         except requests.RequestException as e:
             QMessageBox.warning(self, "请求错误", str(e))
+
+    def closeEvent(self, event):
+        self.fresh.emit()
+        super().closeEvent(event)

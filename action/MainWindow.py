@@ -29,10 +29,19 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
         self.pushButton_searchDi.clicked.connect(self.draw_di)
         self.pushButton_searchTiao.clicked.connect(self.draw_tiao)
         self.pushButton_searchUser.clicked.connect(self.draw_user)
-        self.pushButton_addGoods.clicked.connect(self.add_goods)
-        self.pushButton_addUser.clicked.connect(self.add_user)
-        self.pushButton_addDi.clicked.connect(self.di)
-        self.pushButton_addTiao.clicked.connect(self.tiao)
+
+        self.addGoods = AddGoods()
+        self.di = AddDi()
+        self.tiao = AddTiao()
+        self.addUser = AddUser()
+        self.addGoods.fresh.connect(self.draw_goods)
+        self.di.fresh.connect(self.draw_di)
+        self.tiao.fresh.connect(self.draw_tiao)
+        self.addUser.fresh.connect(self.draw_user)
+        self.pushButton_addGoods.clicked.connect(self.addGoods.show)
+        self.pushButton_addUser.clicked.connect(self.addUser.show)
+        self.pushButton_addDi.clicked.connect(self.di.show)
+        self.pushButton_addTiao.clicked.connect(self.tiao.show)
 
     def table_changed(self, index):
         {
@@ -189,39 +198,3 @@ class MainWindow(QtWidgets.QWidget, mainWindow.Ui_ManagementSystem):
         except requests.RequestException as e:
             QMessageBox.warning(self, "请求错误", str(e))
         self.tableWidget_users.show()
-
-    def add_goods(self):
-        self.addGoods = AddGoods()
-        self.addGoods.closeEvent = self.add_goods_close_event
-        self.addGoods.show()
-
-    def add_goods_close_event(self, event):
-        self.draw_goods()
-        super(AddGoods, self.addGoods).closeEvent(event)
-
-    def add_user(self):
-        self.addUser = AddUser()
-        self.addUser.closeEvent = self.add_user_close_event
-        self.addUser.show()
-
-    def add_user_close_event(self, event):
-        self.draw_user()
-        super(AddGoods, self.addGoods).closeEvent(event)
-
-    def di(self):
-        self.addDi = AddDi()
-        self.addDi.closeEvent = self.add_di_close_event
-        self.addDi.show()
-
-    def add_di_close_event(self, event):
-        self.draw_di()
-        super(AddGoods, self.addGoods).closeEvent(event)
-
-    def tiao(self):
-        self.addTiao = AddTiao()
-        self.addTiao.closeEvent = self.add_tiao_close_event
-        self.addTiao.show()
-
-    def add_tiao_close_event(self, event):
-        self.draw_tiao()
-        super(AddGoods, self.addGoods).closeEvent(event)
